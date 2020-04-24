@@ -19,7 +19,7 @@ async function createBase() {
     for (let indexGroup = 1; indexGroup < 6; indexGroup++) {
       let curentGroup = await Group.create({
         faculty_name: faculties[indexFaculty],
-        groupName: String(indexGroup),
+        groupNumber: indexGroup,
       });
 
       for (
