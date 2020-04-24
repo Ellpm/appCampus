@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
 
 const groupSchema = new mongoose.Schema({
-  facultyName: String,
+  faculty_name: String,
   groupName: String,
-  students: Array,
 });
 
 
