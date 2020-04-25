@@ -1,11 +1,38 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+// import { getData } from "../fetches/getData";
+
+
+
+
 
 export default class Home extends Component {
-  render() {
-    return (
-      <div className='home'>
-        Добро пожаловать в систему учета студентов нашего университета!
-      </div>
-    )
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      data: null,
+    };
   }
+  componentDidMount() {
+    // fetch("http://localhost:5000/base/getData")
+    //   .then((res) => res.json())
+    //   .then(
+    //     (result) => {
+    //       this.setState({
+    //         isLoaded: true,
+    //         data: result,
+    //       });
+    //     },
+    //     (error) => {
+    //       this.setState({
+    //         isLoaded: true,
+    //         error,
+    //       });
+    //     }
+    //   );
+  }
+
+  render() {
+    
 }
