@@ -6,7 +6,7 @@ const Student = require("../models/student");
 
 async function getData() {
   const faculties = await Faculty.find()
-  console.log(faculties);  
+   
   const groups = await Group.find()
   const students = await Student.find()
   return {faculties,groups,students}
@@ -18,5 +18,22 @@ async function getData() {
 router.get("/getData", async function (req, res) {
   res.json({ data: await getData() });
 });
+
+router.post('/addStudent', async function( req,res) {
+  const students = await Student.find()
+  console.log(req.body);
+  
+  const newStudent = await Student.create({
+    firstName: req.body.name,
+    lastName: "String",
+    birthday: new Date(),
+    group_id: students[0].group_id,
+  });
+  res.json({newStudent})
+  
+})
+
+
+
 
 module.exports = router;

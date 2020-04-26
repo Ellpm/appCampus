@@ -1,38 +1,53 @@
 import React, { Component } from "react";
-// import { getData } from "../fetches/getData";
+import { getData } from "../fetches/getData";
+import { connect } from 'react-redux';
+import {getBase, getBaseSaga, addStudent, addStudentSaga} from '../redux/action'
 
 
 
 
 
-export default class Home extends Component {
+ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      isLoaded: false,
-      data: null,
+      name: ''
     };
   }
   componentDidMount() {
-    // fetch("http://localhost:5000/base/getData")
-    //   .then((res) => res.json())
-    //   .then(
-    //     (result) => {
-    //       this.setState({
-    //         isLoaded: true,
-    //         data: result,
-    //       });
-    //     },
-    //     (error) => {
-    //       this.setState({
-    //         isLoaded: true,
-    //         error,
-    //       });
-    //     }
-    //   );
-  }
+this.props.getBaseSaga();
 
-  render() {
-    
+
+    // let dataFetch = getData()
+    // this.props.getBase(dataFetch)
+  }
+writeName = e => {
+  this.setState({
+    name:e.target.value
+  })
 }
+
+addStudent = ()=> {
+this.props.addStudentSaga(this.state.name);
+}
+
+  render() 
+  {
+    return (
+    <div>
+      <input type='text' onChange={this.writeName}/>
+      <button onClick={this.addStudent}>Button</button>
+    </div>)
+}
+}
+const mapStateToProps = (state) => ({
+  
+});
+const mapDispatchToProps = {
+getBase,
+getBaseSaga,
+addStudent,
+addStudentSaga
+};
+export default 
+  connect(mapStateToProps, mapDispatchToProps)(Home);

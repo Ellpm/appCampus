@@ -1,16 +1,21 @@
-import { ONE_THING } from "./action-types";
+import { GET_BASE, ADD_STUDENT } from "./action-types";
 
 const initialUserState = {
-  state1: "one",
+  data: {}
 };
 
 export const reducer = (state = initialUserState, action) => {
   switch (action.type) {
-    case ONE_THING:
+    case GET_BASE:
       return {
         ...state,
-        state1: action.oneFunction,
+        data: action.data,
       };
+      case ADD_STUDENT:
+        return {
+          ...state,
+          student: action.student
+        }
     default:
       return state;
   }

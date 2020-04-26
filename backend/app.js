@@ -8,6 +8,7 @@ const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 const indexRouter = require("./routes/index");
 const baseRouter = require("./routes/base");
+const cors = require('cors')
 
 const app = express();
 console.log('start app');
@@ -17,7 +18,7 @@ mongoose.connect("mongodb://localhost:27017/campus", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

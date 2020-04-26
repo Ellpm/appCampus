@@ -1,8 +1,30 @@
-import { ONE_THING } from "./action-types";
+import { GET_BASE } from "./action-types";
+import { GET_BASE_SAGA, ADD_STUDENT, ADD_STUDENT_SAGA } from "./action-types";
 
-export const oneFunction = (payload) => {
+
+export const getBase = (payload) => {
   return {
-    type: ONE_THING,
-    oneFunction: payload,
+    type: GET_BASE,
+    data: payload,
+  };
+};
+
+export const getBaseSaga = () => {
+  return {
+    type: GET_BASE_SAGA,    
+  };
+};
+
+export const addStudent = (payload) => {
+  return {
+    type: ADD_STUDENT,
+    student: payload,
+  };
+};
+
+export const addStudentSaga = (payload) => {
+  return {
+    type: ADD_STUDENT_SAGA,
+    name: payload
   };
 };
