@@ -1,5 +1,5 @@
 import { GET_BASE } from "./action-types";
-import { GET_BASE_SAGA, ADD_STUDENT, ADD_STUDENT_SAGA } from "./action-types";
+import { GET_BASE_SAGA, ADD_STUDENT, ADD_STUDENT_SAGA, IS_FETCHING, IS_FETCHING_SAGA } from "./action-types";
 
 
 export const getBase = (payload) => {
@@ -26,5 +26,18 @@ export const addStudentSaga = (payload) => {
   return {
     type: ADD_STUDENT_SAGA,
     name: payload
+  };
+};
+export const isFetching = (isFetching) => {
+  return {
+  type: IS_FETCHING,
+  isFetching: isFetching
+}
+}
+
+export const isFetchingSaga = (isFetching) => {
+  return {
+    type: IS_FETCHING_SAGA,
+    isFetching: isFetching,
   };
 };

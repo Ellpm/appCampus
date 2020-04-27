@@ -21,7 +21,13 @@ function* fetchSagaAddStudent(payload) {
     console.log(e);
   }
 }
+
+
+
+
+
 export default function* actionWatcher() {
   yield takeLatest(GET_BASE_SAGA, fetchSagaGetData);
   yield takeLatest(ADD_STUDENT_SAGA, fetchSagaAddStudent);
 }
+

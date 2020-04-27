@@ -8,6 +8,7 @@ import { reducer } from "./redux/reducer";
 import App from "./App";
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './redux/sagas/saga';
+
 const saga = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
