@@ -1,4 +1,5 @@
 import React from "react";
+const moment = require("moment");
 
 export default class Detail extends React.Component {
   render() {
@@ -11,7 +12,8 @@ export default class Detail extends React.Component {
           </b>
         </p>
         <p>
-          Дата рождения <b>{this.props.person.birthday}</b>
+          Дата рождения{" "}
+          <b>{moment(this.props.person.birthday).format("DD.MM.YYYY")}</b>
         </p>
 
         <p>
