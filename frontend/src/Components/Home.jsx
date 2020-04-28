@@ -7,10 +7,7 @@ import {
   addStudent,
   addStudentSaga,
 } from "../redux/action";
-import ListFaculties from "./Faculty/ListFaculties";
-import Table1 from "./Table/Table1";
 import Navigation from "./Navigation";
-import preloader from '../assets/images/preloader.svg'
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -18,12 +15,7 @@ class Home extends Component {
       name: "",
     };
   }
-  async componentDidMount() {
-    this.props.getBaseSaga();
-
-    // let dataFetch = getData()
-    // this.props.getBase(dataFetch)
-  }
+  
   writeName = (e) => {
     this.setState({
       name: e.target.value,
@@ -35,14 +27,8 @@ class Home extends Component {
   };
 
   render() {
-    // console.log(this.props);
 
-    // const list = this.props.data
-    // const items = list.map(function(child) {
-    // return (<li>{child}</li>)
-    // })
-if (this.props.isFetching) {
-    return (   
+    return (
         <>
         <Navigation />
          <div>
@@ -50,10 +36,8 @@ if (this.props.isFetching) {
           <button onClick={this.addStudent}>Button</button>
         </div>
         </>   
-    );
-  } else return (
-    <img scc={preloader} />)
-  
+    )
+ 
 }
 }
 const mapStateToProps = (state) => ({

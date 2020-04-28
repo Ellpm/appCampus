@@ -19,10 +19,11 @@ router.get("/getData", async function (req, res) {
   res.json({ data: await getData() });
 });
 
+  //тестовый роут
 router.post('/addStudent', async function( req,res) {
   const students = await Student.find()
   console.log(req.body);
-  
+
   const newStudent = await Student.create({
     firstName: req.body.name,
     lastName: "String",

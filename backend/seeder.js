@@ -40,8 +40,10 @@ async function createBase() {
         await Student.create({
           firstName: spliteName[0],
           lastName: spliteName[1],
-          birthday: faker.date.past() - 31536000000*(17+indexGroup),
+          birthday: faker.date.past() - 31536000000 * (17 + indexGroup),
+          groupNumber: curentGroup.groupNumber,
           group_id: curentGroup._id,
+          faculty_id: curentFaculty._id,
         });
       }
     }
