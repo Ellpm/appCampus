@@ -1,9 +1,13 @@
-import { GET_BASE, ADD_STUDENT, IS_FETCHING } from "./action-types";
+import {
+  GET_BASE,
+  ADD_STUDENT,
+  IS_FETCHING,
+  EDIT_STUDENT
+} from "./action-types";
 
 const initialUserState = {
   data: {},
   isFetching: false
-
 };
 
 export const reducer = (state = initialUserState, action) => {
@@ -12,18 +16,31 @@ export const reducer = (state = initialUserState, action) => {
       return {
         ...state,
         data: action.data,
-        isFetching: true,
+        isFetching: true
       };
-      case ADD_STUDENT:
-        return {
-          ...state,
-          student: action.student
+    case ADD_STUDENT:
+      return {
+        ...state,
+        student: action.student
+      };
+    case IS_FETCHING:
+      return {
+        ...state,
+        isFetching: action.isFetching
+      };
+    case EDIT_STUDENT:
+      const data = JSON.parse(JSON.stringify(state.data));
+      data.data.students.forEach((item, index) => {
+        if (item._id === action.student._id) {
+          data.data.students[index] = action.student;
+          // data.data.students = [action.student];
         }
-        case IS_FETCHING:
-          return {
-            ...state,
-            isFetching: action.isFetching
-          }
+      });
+      const newState = JSON.parse(JSON.stringify(state));
+      newState.data = data;
+      return {
+        ...newState
+      };
     default:
       return state;
   }

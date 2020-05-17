@@ -8,10 +8,12 @@ const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 const indexRouter = require("./routes/index");
 const baseRouter = require("./routes/base");
-const cors = require('cors')
+const groupRouter = require("./routes/group");
+const studentRouter = require("./routes/student");
+const cors = require("cors");
 
 const app = express();
-console.log('start app');
+console.log("start app");
 
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/campus", {
@@ -22,7 +24,6 @@ app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
 
 app.use(cookieParser());
 
@@ -35,19 +36,16 @@ app.use(
     saveUninitialized: true,
     cookie: {
       expires: 600000,
-      httpOnly: false
-    }
+      httpOnly: false,
+    },
   })
 );
 
 app.use(express.static(path.join(__dirname, "public")));
 
-
-
 app.use(
-  methodOverride(function(req, res) {
+  methodOverride(function (req, res) {
     if (req.body && typeof req.body === "object" && "_method" in req.body) {
-
       const method = req.body._method;
       delete req.body._method;
       return method;
@@ -55,21 +53,22 @@ app.use(
   })
 );
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   app.locals.user = req.session.user;
   next();
 });
 
 app.use("/", indexRouter);
-app.use('/base',baseRouter)
+app.use("/base", baseRouter);
+app.use("/group", groupRouter);
+app.use("/student", studentRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
-app.use(function(err, req, res, next) {
-
+app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
