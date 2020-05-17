@@ -12,7 +12,30 @@ async function getData() {
   return {faculties,groups,students}
 }
 
+router.put('/updateStudent', async function (req, res) {
+  const group = await Group.findOne({faculty_id:req.body.student.faculty_id, groupNumber: req.body.student.groupNumber})
+  await Student.findByIdAndUpdate(
+    req.body.student._id,
+    {
+      firstName: req.body.student.name,
+      lastName: req.body.student.lastName,
+      birthday: req.body.student.birthday,
+      groupNumber: group.groupNumber,
+      group_id: group._id,
+    },
+    function (err, updatedStudent) {
+      if (err) return res.json({ error: "404" });
+      res.json({ updatedStudent });
+    }
+  );  
+})
 
+router.delete('/deleteStudent', async function (req, res){
+  await Student.findByIdAndRemove(req.body.student._id, function(err, deletedStudent) {
+    if (err) return res.json({error: "404"})
+    res.json({deletedStudent})
+  })
+})
 
 
 router.get("/getData", async function (req, res) {
