@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Item from './Base/Item.jsx'
+import Navigation from './Navigation'
 
 export class Base extends React.Component {
   render() {
@@ -9,6 +10,8 @@ export class Base extends React.Component {
 
     
     return (
+      <>
+      <Navigation />
       <ul>
         {faculties.length ? (
           faculties.map((item) => {
@@ -26,6 +29,7 @@ export class Base extends React.Component {
           <div>Add task</div>
         )}
       </ul>
+      </>
     );
 
     // return <div>Base</div>;

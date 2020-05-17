@@ -10,11 +10,19 @@ import {
   addStudentSaga,
 } from "./redux/action";
 import preloader from "./assets/images/preloader.svg";
-import TableView from "./Components/Faculty/Faculties";
+import Faculties from "./Components/Faculty/Faculties";
+
+import Modal from './modalwindows/Modal'
 
 import "./App.css"
 
 class App extends React.Component {
+state = {
+  isModalOpen: false
+}
+toggleModal = () => {
+this.setState(state => ({isModalOpen: !state.isModalOpen}))
+}
   async componentDidMount() {
     this.props.getBaseSaga();
 
@@ -25,6 +33,14 @@ class App extends React.Component {
     if (this.props.isFetching) {
       return (
         <>
+        <button onClick={this.toggleModal}>Открыть</button>
+
+        {this.state.isModalOpen &&         
+        <Modal OnClose={this.toggleModal}>
+          <h1>Модальное окно</h1>
+        </Modal>
+        
+        }
           <div className="body">
             <Switch>
               <Route exact path="/">
@@ -36,7 +52,7 @@ class App extends React.Component {
               <Route
                 path="/faculty/:id"
                 render={(props) => (
-                  <TableView
+                  <Faculties
                     id={props.match.params.id}                    
                   />
                 )}

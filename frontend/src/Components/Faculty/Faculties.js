@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Table from "./Content/Table";
 import DetailRowView from "./Content/Detail";
 import TableSearch from "./Content/SearchHook";
+import Navigation from '../Navigation'
 import _ from "lodash";
 
 
@@ -71,6 +72,7 @@ const faculty = this.props.data.faculties.find((faculty) => faculty._id === id)
 
     return (
       <>
+      <Navigation />
         <h1>{this.findFaculty(this.props.id)}</h1>
         <div>
           {this.state.row ? <DetailRowView person={this.state.row} /> : null}
