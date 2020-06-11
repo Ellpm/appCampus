@@ -1,7 +1,8 @@
 import React from "react";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import Home from "./Components/Home";
-import Base from "./Components/Base";
+import Header from "./Components/Header";
+import Base from "./Components/Base/Base";
 import { connect } from "react-redux";
 import {
   getBase,
@@ -11,9 +12,6 @@ import {
 } from "./redux/action";
 import preloader from "./assets/images/preloader.svg";
 import Faculties from "./Components/Faculty/Faculties";
-
-import Modal from './modalwindows/Modal'
-
 import "./App.css"
 
 class App extends React.Component {
@@ -25,22 +23,12 @@ this.setState(state => ({isModalOpen: !state.isModalOpen}))
 }
   async componentDidMount() {
     this.props.getBaseSaga();
-
-    // let dataFetch = getData()
-    // this.props.getBase(dataFetch)
   }
   render() {
     if (this.props.isFetching) {
-      return (
+      return (        
         <>
-        <button onClick={this.toggleModal}>Открыть</button>
-
-        {this.state.isModalOpen &&         
-        <Modal OnClose={this.toggleModal}>
-          <h1>Модальное окно</h1>
-        </Modal>
-        
-        }
+        <Header />
           <div className="body">
             <Switch>
               <Route exact path="/">
@@ -62,7 +50,7 @@ this.setState(state => ({isModalOpen: !state.isModalOpen}))
         </>
       );
     } else {
-      return <img scc={preloader} />;
+      return <img src={preloader} />;
     }
   }
 }

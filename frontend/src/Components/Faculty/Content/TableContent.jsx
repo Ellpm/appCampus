@@ -1,8 +1,12 @@
 import React from 'react'
+
 const moment = require("moment");
 
-export default class Table extends React.Component {
+export default class TableContent extends React.Component {
   render() {
+    console.log(this.props.data);
+    
+
     return (
       <table className="table" style={{ cursor: "pointer" }}>
         <thead>
@@ -23,6 +27,8 @@ export default class Table extends React.Component {
         </thead>
         <tbody>
           {this.props.data.map((item) => (
+            
+            
             <tr
               key={item._id + item.groupNumber}
               onClick={this.props.onRowSelect.bind(null, item)}
@@ -30,11 +36,12 @@ export default class Table extends React.Component {
               <td>{item.firstName}</td>
               <td>{item.lastName}</td>
               <td>
-                {moment(item.birthday).format("DD.MM.YYYY") }
+                {moment(item.birthday).format("DD.MM.YYYY")}
               </td>
               <td>{item.groupNumber}</td>
             </tr>
-          ))}
+          )
+          )}
         </tbody>
       </table>
     );

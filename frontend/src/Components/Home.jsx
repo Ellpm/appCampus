@@ -7,7 +7,7 @@ import {
   addStudent,
   addStudentSaga,
 } from "../redux/action";
-import Navigation from "./Navigation";
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -30,11 +30,10 @@ class Home extends Component {
 
     return (
         <>
-        <Navigation />
-         <div>
+         {/* <div>
           <input type="text" onChange={this.writeName} />
           <button onClick={this.addStudent}>Button</button>
-        </div>
+        </div> */}
         </>   
     )
  

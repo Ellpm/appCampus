@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import Table from "./Content/Table";
+import TableContent from "./Content/TableContent";
 import DetailRowView from "./Content/Detail";
 import TableSearch from "./Content/SearchHook";
-import Navigation from "../Navigation";
+import Tab from "./Content/Tab"
 import _ from "lodash";
+
 
 class TableView extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class TableView extends React.Component {
       )
     });
   }
-  onSort = sortField => {
+  onSort = sortField => {    
     const cloneData = this.state.data.concat();
     const sort = this.state.sort === "asc" ? "desc" : "asc";
     const data = _.orderBy(cloneData, sortField, sort);
@@ -88,7 +89,6 @@ class TableView extends React.Component {
     
     return (
       <>
-        <Navigation />
         <h1>{this.findFaculty(this.props.id)}</h1>
         <div>
           {this.state.row ? (
@@ -100,12 +100,14 @@ class TableView extends React.Component {
           ) : null}
         </div>
         <TableSearch onSearch={this.searchHandler} />
-        <Table
-          data={filteredData}
+        <Tab
+          tableData={filteredData.slice(0, 10)}
           onSort={this.onSort}
           sort={this.state.sort}
           sortField={this.state.sortField}
           onRowSelect={this.onRowSelect}
+          tableHead={["firstName", "lastName", "birthday", "groupNumber"]}
+          tableHeaderColor="success"
         />
       </>
     );
