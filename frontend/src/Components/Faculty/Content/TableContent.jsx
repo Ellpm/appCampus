@@ -1,7 +1,5 @@
 import React from 'react'
 
-const moment = require("moment");
-
 export default class TableContent extends React.Component {
   render() {
     console.log(this.props.data);
@@ -36,7 +34,7 @@ export default class TableContent extends React.Component {
               <td>{item.firstName}</td>
               <td>{item.lastName}</td>
               <td>
-                {moment(item.birthday).format("DD.MM.YYYY")}
+                {item.birthday}
               </td>
               <td>{item.groupNumber}</td>
             </tr>

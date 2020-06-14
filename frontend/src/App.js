@@ -12,38 +12,34 @@ import {
 } from "./redux/action";
 import preloader from "./assets/images/preloader.svg";
 import Faculties from "./Components/Faculty/Faculties";
-import "./App.css"
+import "./App.css";
+import routes from "./Components/routes";
 
 class App extends React.Component {
-state = {
-  isModalOpen: false
-}
-toggleModal = () => {
-this.setState(state => ({isModalOpen: !state.isModalOpen}))
-}
+  state = {
+    isModalOpen: false,
+  };
+  toggleModal = () => {
+    this.setState((state) => ({ isModalOpen: !state.isModalOpen }));
+  };
   async componentDidMount() {
     this.props.getBaseSaga();
   }
   render() {
     if (this.props.isFetching) {
-      return (        
+      return (
         <>
-        <Header />
+          <Header />
           <div className="body">
             <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route exact path="/base">
-                <Base />
-              </Route>
+              {routes.map((item, key) => (
+                <Route key={key} exact path={item.route}>
+                  {item.component}
+                </Route>
+              ))}
               <Route
                 path="/faculty/:id"
-                render={(props) => (
-                  <Faculties
-                    id={props.match.params.id}                    
-                  />
-                )}
+                render={(props) => <Faculties id={props.match.params.id} />}
               />
             </Switch>
           </div>

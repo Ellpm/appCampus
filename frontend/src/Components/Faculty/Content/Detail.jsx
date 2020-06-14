@@ -3,46 +3,44 @@ import Modal from "../../../modalwindows/Modal.jsx";
 import { editStudentSaga } from "../../../redux/action";
 import { connect } from "react-redux";
 
-const moment = require("moment");
-
 class Detail extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       editStudent: false,
       firstName: "",
       lastName: "",
       birthday: "",
-      groupNumber: 0
+      groupNumber: 0,
     };
     this.edit = this.edit.bind(this);
     this.saveChanges = this.saveChanges.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-  
+
   componentDidMount() {
     const { firstName, lastName, birthday, groupNumber } = this.props.person;
     this.setState({
       firstName,
       lastName,
       birthday,
-      groupNumber
+      groupNumber,
     });
   }
-  
+
   handleChange(e) {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   }
-  
+
   edit() {
     this.setState({
-      editStudent: true
+      editStudent: true,
     });
   }
-  
+
   saveChanges(e) {
     e.preventDefault();
     this.props.editStudentSaga({
@@ -53,7 +51,7 @@ class Detail extends React.Component {
       group_id: this.props.person.group_id,
       lastName: this.state.lastName,
       __v: this.props.person.__v,
-      _id: this.props.person._id
+      _id: this.props.person._id,
     });
     this.props.updateStudent({
       birthday: this.state.birthday,
@@ -63,10 +61,10 @@ class Detail extends React.Component {
       group_id: this.props.person.group_id,
       lastName: this.state.lastName,
       __v: this.props.person.__v,
-      _id: this.props.person._id
+      _id: this.props.person._id,
     });
     this.setState({
-      editStudent: false
+      editStudent: false,
     });
   }
   render() {
@@ -118,16 +116,15 @@ class Detail extends React.Component {
                     Выбран студент: <b>{firstName + " " + lastName}</b>
                   </p>
                   <p>
-                    Дата рождения:{" "}
-                    <b>{moment(birthday).format("DD.MM.YYYY")}</b>
+                    Дата рождения: <b>{birthday}</b>
                   </p>
-​
+                  ​
                   <p>
                     Номер группы: <b>{groupNumber}</b>
                   </p>
                 </div>
               )}
-​
+              ​
               <div>
                 <button onClick={this.edit} className="button__hover">
                   Редактировать
@@ -153,9 +150,9 @@ class Detail extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = {
-  editStudentSaga
+  editStudentSaga,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);

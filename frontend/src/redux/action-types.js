@@ -6,3 +6,5 @@ export const IS_FETCHING = "IS_FETCHING";
 export const IS_FETCHING_SAGA = "IS_FETCHING_SAGA";
 export const EDIT_STUDENT = "EDIT_STUDENT";
 export const EDIT_STUDENT_SAGA = "EDIT_STUDENT_SAGA";
+export const ADD_GROUP = "ADD_GROUP";
+export const ADD_GROUP_SAGA = "ADD_GROUP_SAGA";

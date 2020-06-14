@@ -30,6 +30,7 @@ class Home extends Component {
 
     return (
         <>
+        Home
          {/* <div>
           <input type="text" onChange={this.writeName} />
           <button onClick={this.addStudent}>Button</button>

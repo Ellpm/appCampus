@@ -6,58 +6,73 @@ import {
   IS_FETCHING,
   IS_FETCHING_SAGA,
   EDIT_STUDENT,
-  EDIT_STUDENT_SAGA
+  EDIT_STUDENT_SAGA,
+  ADD_GROUP_SAGA,
+  ADD_GROUP,
 } from "./action-types";
 
-export const editStudentSaga = payload => {
+export const editStudentSaga = (payload) => {
   return {
     type: EDIT_STUDENT_SAGA,
-    student: payload
+    student: payload,
   };
 };
-export const editStudent = payload => {
+export const editStudent = (payload) => {
   return {
     type: EDIT_STUDENT,
-    student: payload
+    student: payload,
   };
 };
 
-export const getBase = payload => {
+export const getBase = (payload) => {
   return {
     type: GET_BASE,
-    data: payload
+    data: payload,
   };
 };
 
 export const getBaseSaga = () => {
   return {
-    type: GET_BASE_SAGA
+    type: GET_BASE_SAGA,
   };
 };
 
-export const addStudent = payload => {
+export const addStudent = (payload) => {
   return {
     type: ADD_STUDENT,
-    student: payload
+    student: payload,
+  };
+};
+export const addGroup = (payload) => {
+  return {
+    type: ADD_GROUP,
+    group: payload,
   };
 };
 
-export const addStudentSaga = payload => {
+export const addStudentSaga = (payload) => {
   return {
     type: ADD_STUDENT_SAGA,
-    name: payload
-  };
-};
-export const isFetching = isFetching => {
-  return {
-    type: IS_FETCHING,
-    isFetching: isFetching
+    name: payload,
   };
 };
 
-export const isFetchingSaga = isFetching => {
+export const addGroupSaga = (payload) => {
+  return {
+    type: ADD_GROUP_SAGA,
+    group: payload,
+  };
+};
+export const isFetching = (isFetching) => {
+  return {
+    type: IS_FETCHING,
+    isFetching: isFetching,
+  };
+};
+
+export const isFetchingSaga = (isFetching) => {
   return {
     type: IS_FETCHING_SAGA,
-    isFetching: isFetching
+    isFetching: isFetching,
   };
 };

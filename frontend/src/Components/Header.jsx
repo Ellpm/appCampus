@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Link, Switch, Route, Redirect } from "react-router-dom";
+import {Link} from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -117,20 +117,3 @@ export default function ButtonAppBar() {
     </>
   );
 }
-
-// import React, { Component } from 'react'
-// import { Link } from "react-router-dom";
-
-// export default function Header({ ...rest }) {
-
-//     return (
-//       <>
-//         <div className="header">
-//           <Link to="/">Main</Link>
-//           <br></br>
-//           <Link to="/base">Base</Link>
-//         </div>
-
-//       </>
-//     );
-// }

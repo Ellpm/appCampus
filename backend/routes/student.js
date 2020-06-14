@@ -4,15 +4,16 @@ const Group = require("../models/group");
 const Student = require("../models/student");
 
 router.post("/addStudent", async function (req, res) {
-  const students = await Student.find();
-  console.log(req.body);
-
+  const group = await Group.findOne({ groupNumber: req.body.name.groupNumber });
   const newStudent = await Student.create({
-    firstName: req.body.name,
-    lastName: "String",
-    birthday: new Date(),
-    group_id: students[0].group_id,
+    firstName: req.body.name.firstName,
+    lastName: req.body.name.lastName,
+    birthday: req.body.name.birthday,
+    groupNumber: group.groupNumber,
+    group_id: group._id,
+    faculty_id: req.body.name.faculty_id,
   });
+  await newStudent.save();
   res.json({ newStudent });
 });
 

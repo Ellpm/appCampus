@@ -1,7 +1,6 @@
 import React from "react";
 import MaterialTable from "material-table";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 export class NewT extends React.Component {
   getdataTable(array) {

@@ -1,10 +1,11 @@
 const faker = require("faker/locale/ru");
 const mongoose = require("mongoose");
 mongoose.pluralize(null);
+const moment = require("moment");
 
 const Student = require("./models/student");
 const Group = require("./models/group");
-const Faculty = require('./models/faculty')
+const Faculty = require("./models/faculty");
 const faculties = require("./src/faculty");
 
 async function createBase() {
@@ -18,7 +19,7 @@ async function createBase() {
   );
   for (let indexFaculty = 0; indexFaculty < faculties.length; indexFaculty++) {
     const curentFaculty = await Faculty.create({
-      faculty_name: faculties[indexFaculty]
+      faculty_name: faculties[indexFaculty],
     });
     for (let indexGroup = 1; indexGroup < 6; indexGroup++) {
       const curentGroup = await Group.create({
@@ -32,15 +33,15 @@ async function createBase() {
         indexStudent < Math.round(Math.random() * 10) + 20;
         indexStudent++
       ) {
-        const nameStudent = await faker.name.findName()
-        const spliteName = nameStudent.split(' ')
-
-
+        const nameStudent = await faker.name.findName();
+        const spliteName = nameStudent.split(" ");
 
         await Student.create({
           firstName: spliteName[0],
           lastName: spliteName[1],
-          birthday: faker.date.past() - 31536000000 * (17 + indexGroup),
+          birthday: moment(
+            faker.date.past() - 31536000000 * (17 + indexGroup)
+          ).format("DD.MM.YYYY"),
           groupNumber: curentGroup.groupNumber,
           group_id: curentGroup._id,
           faculty_id: curentFaculty._id,
